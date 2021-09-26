@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <TextInput
+    onChangeText={[Function]}
+    style={
+      Object {
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 12,
+        "padding": 10,
+      }
+    }
+    value="mor_2314"
+  />
+  <TextInput
+    onChangeText={[Function]}
+    style={
+      Object {
+        "borderWidth": 1,
+        "height": 40,
+        "margin": 12,
+        "padding": 10,
+      }
+    }
+    value="83r5"
+  />
+  <View
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        login
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -40,6 +40,7 @@ const BaseScreen: React.FC<BaseScreenProps> = ({ children }) => {
         userCart.products.push({ productId, quantity: 1 });
       }
     }
+    saveCart(userDetails, userCart);
   };
 
   const removeFromCart = (productId: number) => {
@@ -47,8 +48,15 @@ const BaseScreen: React.FC<BaseScreenProps> = ({ children }) => {
       const product = userCart.products.find(p => p.productId == productId);
       if (product) {
         product.quantity -= 1;
+        if (product.quantity == 0) {
+          const index = userCart.products.indexOf(product, 0);
+          if (index > -1) {
+            userCart.products.splice(index, 1);
+          }
+        }
       }
     }
+    saveCart(userDetails, userCart);
   };
 
   const value = {
@@ -68,7 +76,6 @@ const BaseScreen: React.FC<BaseScreenProps> = ({ children }) => {
     getAllUsers(users => {
       if (isLoggedIn) {
         const user = users.find(user => user.username === username);
-        console.log({ username, user, users });
         setUserDetails ? setUserDetails(user) : null;
       }
     });
@@ -90,7 +97,6 @@ const BaseScreen: React.FC<BaseScreenProps> = ({ children }) => {
                 setUserCart(remoteCart);
               }
             }
-            console.log({ remoteCart, userCart });
           },
           error => { },
         );
@@ -102,16 +108,20 @@ const BaseScreen: React.FC<BaseScreenProps> = ({ children }) => {
   }, [userDetails]);
 
   useEffect(() => {
-    if (userDetails && userCart) {
-      userCart.date = new Date().toUTCString();
-      save(`Cart::${userDetails.id}`, userCart, result => {
-        console.log({ result });
-      });
-    }
+    saveCart(userDetails, userCart);
   }, [userCart]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+export const saveCart = (userDetails?: User, userCart?: Cart) => {
+  if (userDetails && userCart) {
+    userCart.date = new Date().toUTCString();
+    save(`Cart::${userDetails.id}`, userCart, result => {
+      console.log({ result });
+    });
+  }
+}
 
 export const ErrorHandler = (
   state: string,

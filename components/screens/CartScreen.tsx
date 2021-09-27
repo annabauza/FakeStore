@@ -13,7 +13,6 @@ const CartScreen: React.FC<CartScreenProps> = () => {
   const [state, setState] = useState('loaded');
   const [products, setProducts] = useState(new Array<Product>());
   const [errorMessage] = useState("Could not load card, please try again later");
-  console.log({ userCart });
 
   useEffect(() => {
     const f = getAllProducts((products) => {

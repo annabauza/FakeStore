@@ -44,7 +44,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
             login,
             password,
             token => {
-              console.log({ setUsername, login });
               setToken ? setToken(token) : null;
               setUsername ? setUsername(login) : null;
               setState('loaded');
